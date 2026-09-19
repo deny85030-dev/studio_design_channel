@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="id" class="light scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Prompt Design Channel</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brandGreen: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                            950: '#052e16'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        outfit: ['Outfit', 'sans-serif'],
+                        mono: ['Space Grotesk', 'monospace']
+                    },
+                    animation: {
+                        'spin-slow': 'spin 3s linear infinite'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #f8fafc;
+            color: #0f172a;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(34, 197, 94, 0.04) 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(22, 163, 74, 0.05) 0%, transparent 45%);
+            min-height: 100vh;
+        }
+
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #16a34a;
+        }
+
+        .green-glow {
+            box-shadow: 0 10px 35px -5px rgba(22, 163, 74, 0.25);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.03), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+
+    <!-- Kode anti copas dan klik kanan -->
+    <script type="text/javascript">function disableSelection(e){if(typeof e.onselectstart!="undefined")e.onselectstart=function(){return false};else if(typeof e.style.MozUserSelect!="undefined")e.style.MozUserSelect="none";else e.onmousedown=function(){return false};e.style.cursor="default"}window.onload=function(){disableSelection(document.body)}</script>
+    <script type="text/javascript">function mousedwn(e){try{if(event.button==2||event.button==3)return false}catch(e){if(e.which==3)return false}}document.oncontextmenu=function(){return false};document.ondragstart=function(){return false};document.onmousedown=mousedwn</script>
+    <style type="text/css">* : (input, textarea) {-webkit-touch-callout: none;-webkit-user-select: none;}</style>
+    <style type="text/css">img {-webkit-touch-callout: none;-webkit-user-select: none;}</style>
+    <script type="text/javascript">document.onkeydown=function(e){e=e||window.event;if(e.keyCode==123||e.keyCode==18){return false}}</script> 
+</head>
+<body class="p-4 md:p-8 min-h-screen flex flex-col justify-between antialiased selection:bg-brandGreen-200 selection:text-brandGreen-900">
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="fixed top-6 right-6 z-50 flex flex-col gap-3 pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto w-full flex-grow flex flex-col gap-8">
+
+        <header class="text-center py-4 relative flex flex-col items-center">
+            <div class="inline-flex items-center gap-2.5 mb-3 bg-brandGreen-50 border border-brandGreen-200 px-5 py-1.5 rounded-full shadow-sm">
+                <span class="relative flex h-2.5 w-2.5">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brandGreen-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brandGreen-600"></span>
+                </span>
+                <span class="text-xs font-bold tracking-widest text-brandGreen-800 uppercase font-mono">
+                    PROMPT DESIGN CHANNEL
+                </span>
+            </div>
+
+            <h1 class="text-3xl md:text-5xl font-black tracking-tight text-slate-900 uppercase font-outfit">
+                STUDIO PROMPT <span class="text-transparent bg-clip-text bg-gradient-to-r from-brandGreen-600 to-emerald-500">& BRANDING YOUTUBE</span>
+            </h1>
+        </header>
+
+        <section class="glass-card rounded-3xl p-6 md:p-8 transition-all relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-brandGreen-500/5 rounded-bl-full pointer-events-none"></div>
+
+            <div class="flex items-center justify-between border-b border-slate-100 pb-5 mb-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-2xl bg-gradient-to-br from-brandGreen-500 to-brandGreen-600 text-white font-black text-lg flex items-center justify-center shadow-md shadow-brandGreen-500/20">
+                        <i class="fa-solid fa-sliders"></i>
+                    </span>
+                    <div>
+                        <h2 class="text-lg md:text-xl font-extrabold text-slate-900">Control Center Branding</h2>
+                        <p class="text-xs text-slate-500 mt-0.5">Isi data di bawah ini untuk memulai.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5">
+                
+                <!-- 1. Nama Channel Input (Dynamic Logic Trigger) -->
+                <div class="lg:col-span-5 flex flex-col gap-2">
+                    <div class="flex items-center justify-between">
+                        <label for="channelNameInput" class="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-2 font-mono">
+                            <i class="fa-solid fa-signature text-brandGreen-600"></i>
+                            <span>1. Nama Channel</span>
+                        </label>
+                        <span id="nameStatusHint" class="text-[11px] font-semibold text-slate-400 font-mono">Opsional (Bisa Kosong)</span>
+                    </div>
+                    <div class="relative group">
+                        <input type="text" id="channelNameInput" 
+                            placeholder="Contoh: MeowVerse ID (atau kosongkan)" 
+                            class="w-full bg-slate-50 border-2 border-slate-200 rounded-2xl px-4 py-3.5 text-slate-900 font-bold placeholder-slate-400 focus:outline-none focus:border-brandGreen-500 focus:bg-white focus:ring-4 focus:ring-brandGreen-500/10 transition-all text-base">
+                        
+                        <button id="clearNameBtn" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-red-500 p-2 rounded-xl transition-colors">
+                            <i class="fa-solid fa-xmark text-base"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. Niche / Topik Utama -->
+                <div class="lg:col-span-4 flex flex-col gap-2">
+                    <label for="topicInput" class="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-2 font-mono">
+                        <i class="fa-solid fa-compass text-brandGreen-600"></i>
+                        <span>2. Topik / Sub-Niche</span>
+                    </label>
+                    <input type="text" id="topicInput" 
+                        placeholder="Contoh: Kucing Lucu, Gaming, Supercar..." 
+                        class="w-full bg-slate-50 border-2 border-slate-200 rounded-2xl px-4 py-3.5 text-slate-800 font-semibold placeholder-slate-400 focus:outline-none focus:border-brandGreen-500 focus:bg-white focus:ring-4 focus:ring-brandGreen-500/10 transition-all text-base">
+                </div>
+
+                <!-- 3. Bahasa Target -->
+                <div class="lg:col-span-3 flex flex-col gap-2">
+                    <label for="langSelect" class="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-2 font-mono">
+                        <i class="fa-solid fa-globe text-brandGreen-600"></i>
+                        <span>3. Bahasa Target</span>
+                    </label>
+                    <div class="relative">
+                        <select id="langSelect" class="w-full bg-slate-50 border-2 border-slate-200 rounded-2xl px-4 py-3.5 text-slate-800 font-semibold focus:outline-none focus:border-brandGreen-500 focus:bg-white focus:ring-4 focus:ring-brandGreen-500/10 transition-all text-base appearance-none cursor-pointer">
+                            <option value="Indonesian" selected>🇮🇩 Indonesian</option>
+                            <option value="English">🇺🇸 English</option>
+                            <option value="Arabic">🇸🇦 Arabic</option>
+                            <option value="Spanish">🇪🇸 Spanish</option>
+                            <option value="Japanese">🇯🇵 Japanese</option>
+                        </select>
+                        <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-7 pt-5 border-t border-slate-100 flex justify-end">
+                <div class="w-full sm:w-auto min-w-[320px]">
+                    
+                    <!-- BUTTON A: Direct Studio (Visible if Channel Name is FILLED) -->
+                    <button id="directStudioBtn" 
+                        class="w-full bg-gradient-to-r from-brandGreen-600 to-emerald-600 hover:from-brandGreen-700 hover:to-emerald-700 active:scale-[0.99] text-white font-extrabold py-3.5 px-6 rounded-2xl green-glow transition-all duration-200 flex items-center justify-center gap-3 text-sm tracking-wider uppercase cursor-pointer">
+                        <i id="directBtnIcon" class="fa-solid fa-wand-magic-sparkles text-base"></i>
+                        <span id="directBtnText">GENERATE PROMPT & METADATA BRAND</span>
+                    </button>
+
+                    <!-- BUTTON B: Generate 10 Name Ideas (Visible ONLY if Channel Name is EMPTY) -->
+                    <button id="generateNamesBtn" 
+                        class="hidden w-full bg-slate-900 hover:bg-slate-800 active:scale-[0.99] text-white font-extrabold py-3.5 px-6 rounded-2xl shadow-lg transition-all duration-200 flex items-center justify-center gap-3 text-sm tracking-wider uppercase cursor-pointer">
+                        <i id="namesBtnIcon" class="fa-solid fa-lightbulb text-amber-400"></i>
+                        <span id="namesBtnText">GENERATE 10 IDE NAMA CHANNEL</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: 10 NAME IDEAS GRID -->
+        <section id="nameIdeasSection" class="hidden flex flex-col gap-4 transition-all opacity-0 translate-y-4 duration-500">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between px-2 gap-2">
+                <h3 class="text-base md:text-lg font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-list-check text-brandGreen-600"></i>
+                    <span>Pilih 1 Brand Nama Channel di Bawah Ini:</span>
+                </h3>
+                <span id="activeTopicBadge" class="text-xs font-bold text-brandGreen-800 bg-brandGreen-100 border border-brandGreen-300 px-3.5 py-1 rounded-full font-mono">
+                    -
+                </span>
+            </div>
+
+            <div id="namesGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Dynamically inserted 10 channel name cards -->
+            </div>
+        </section>
+
+        <!-- SECTION: STUDIO PROMPT & SEO WORKSPACE -->
+        <section id="studioWorkspace" class="hidden glass-card rounded-3xl p-6 md:p-8 flex flex-col gap-8 transition-all opacity-0 translate-y-4 duration-500 border-t-4 border-t-brandGreen-500">
+            
+            <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between border-b border-slate-100 pb-6 gap-5">
+                <div class="flex items-center gap-3.5">
+                    <span class="w-10 h-10 rounded-2xl bg-gradient-to-br from-brandGreen-500 to-brandGreen-600 text-white font-black text-lg flex items-center justify-center shadow-md shadow-brandGreen-500/20">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </span>
+                    <div>
+                        <h2 class="text-lg md:text-xl font-extrabold text-slate-900">Studio Visual & SEO Output</h2>
+                        <p class="text-xs text-slate-500 mt-0.5">Hasil optimasi prompt AI dan metadata untuk channel Anda.</p>
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-auto flex items-center gap-3 bg-slate-50 p-3 rounded-2xl border border-slate-200">
+                    <div class="flex flex-col">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase font-mono tracking-wider">Target Channel:</span>
+                        <span id="activeChannelDisplay" class="font-black text-slate-900 text-base md:text-lg text-brandGreen-800 font-outfit">
+                            -
+                        </span>
+                    </div>
+                    <button id="copyActiveNameBtn" class="ml-auto bg-white hover:bg-brandGreen-50 text-slate-700 hover:text-brandGreen-700 border border-slate-200 font-bold text-xs px-3.5 py-2 rounded-xl transition-all shadow-sm flex items-center gap-1.5">
+                        <i class="fa-regular fa-copy"></i> Salin Nama
+                    </button>
+                </div>
+            </div>
+
+            <!-- SEO METADATA GRID -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- SEO DESCRIPTION -->
+                <div class="flex flex-col gap-3 bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                        <label class="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-2 font-mono">
+                            <div class="w-7 h-7 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-xs"><i class="fa-solid fa-align-left"></i></div>
+                            <span>Deskripsi SEO Channel</span>
+                        </label>
+                        <button id="copyDescBtn" class="bg-slate-50 hover:bg-brandGreen-50 text-slate-600 hover:text-brandGreen-700 border border-slate-200 font-bold px-3 py-1.5 rounded-lg text-xs flex items-center gap-1.5 transition-all">
+                            <i class="fa-regular fa-copy"></i> Copy
+                        </button>
+                    </div>
+                    <div id="detailDescription" class="w-full bg-slate-50 rounded-xl p-4 text-xs md:text-sm text-slate-700 leading-relaxed whitespace-pre-line h-44 overflow-y-auto border border-slate-100">
+                        <!-- Text inserted dynamically -->
+                    </div>
+                    <span id="charCount" class="text-[10px] text-slate-400 font-mono text-right font-medium">0 Karakter</span>
+                </div>
+
+                <!-- HASHTAGS & TAGS -->
+                <div class="flex flex-col gap-3 bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                        <label class="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-2 font-mono">
+                            <div class="w-7 h-7 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center text-xs"><i class="fa-solid fa-hashtag"></i></div>
+                            <span>Kata Kunci & Tags</span>
+                        </label>
+                        <button id="copyTagsBtn" class="bg-slate-50 hover:bg-brandGreen-50 text-slate-600 hover:text-brandGreen-700 border border-slate-200 font-bold px-3 py-1.5 rounded-lg text-xs flex items-center gap-1.5 transition-all">
+                            <i class="fa-regular fa-copy"></i> Copy
+                        </button>
+                    </div>
+                    <div id="detailTags" class="w-full bg-slate-50 rounded-xl p-4 text-xs md:text-sm font-mono text-brandGreen-700 h-44 overflow-y-auto leading-relaxed border border-slate-100">
+                        <!-- Tags inserted dynamically -->
+                    </div>
+                    <span class="text-[10px] text-slate-400 font-mono text-right font-medium">Siap Paste di YouTube Studio</span>
+                </div>
+            </div>
+
+            <!-- AI PROMPT SECTION & CHATGPT TAB INTEGRATION -->
+            <div class="flex flex-col gap-5 bg-slate-50 -mx-6 md:-mx-8 -mb-6 md:-mb-8 p-6 md:p-8 rounded-b-3xl border-t border-slate-200 mt-2">
+                
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mt-2">
+                    <h3 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
+                        <i class="fa-solid fa-image text-brandGreen-600"></i>
+                        <span>Prompt Generasi Gambar AI</span>
+                    </h3>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    
+                    <!-- 1. PROMPT LOGO -->
+                    <div class="bg-white border-2 border-slate-100 focus-within:border-brandGreen-300 rounded-2xl p-5 flex flex-col gap-3 shadow-sm hover:shadow-md transition-all">
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-3 gap-2 flex-wrap">
+                            <span class="text-xs font-bold text-slate-800 flex items-center gap-2 font-mono">
+                                <div class="w-7 h-7 rounded bg-brandGreen-100 text-brandGreen-700 flex items-center justify-center text-xs font-black">1:1</div>
+                                PROMPT LOGO / AVATAR
+                            </span>
+                            <div class="flex items-center gap-2">
+                                <button id="copyLogoPromptBtn" class="bg-brandGreen-600 hover:bg-brandGreen-700 text-white px-3 py-1.5 rounded-lg text-xs flex items-center gap-1.5 transition-all font-bold shadow-sm active:scale-95">
+                                    <i class="fa-regular fa-copy"></i> Salin Prompt
+                                </button>
+                                <a href="https://chatgpt.com" target="_blank" rel="noopener noreferrer" 
+                                   title="Buka ChatGPT untuk generate gambar logo"
+                                   class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all">
+                                    <i class="fa-solid fa-up-right-from-square text-[10px]"></i> ChatGPT
+                                </a>
+                            </div>
+                        </div>
+                        <textarea id="logoPromptText" rows="8" class="w-full text-xs font-mono text-slate-700 bg-slate-50 p-3.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brandGreen-500/20 leading-relaxed resize-y"></textarea>
+                    </div>
+
+                    <!-- 2. PROMPT BANNER -->
+                    <div class="bg-white border-2 border-slate-100 focus-within:border-brandGreen-300 rounded-2xl p-5 flex flex-col gap-3 shadow-sm hover:shadow-md transition-all">
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-3 gap-2 flex-wrap">
+                            <span class="text-xs font-bold text-slate-800 flex items-center gap-2 font-mono">
+                                <div class="w-7 h-7 rounded bg-brandGreen-100 text-brandGreen-700 flex items-center justify-center text-xs font-black">16:9</div>
+                                PROMPT BANNER YOUTUBE
+                            </span>
+                            <div class="flex items-center gap-2">
+                                <button id="copyBannerPromptBtn" class="bg-brandGreen-600 hover:bg-brandGreen-700 text-white px-3 py-1.5 rounded-lg text-xs flex items-center gap-1.5 transition-all font-bold shadow-sm active:scale-95">
+                                    <i class="fa-regular fa-copy"></i> Salin Prompt
+                                </button>
+                                <a href="https://chatgpt.com" target="_blank" rel="noopener noreferrer" 
+                                   title="Buka ChatGPT untuk generate gambar banner"
+                                   class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all">
+                                    <i class="fa-solid fa-up-right-from-square text-[10px]"></i> ChatGPT
+                                </a>
+                            </div>
+                        </div>
+                        <textarea id="bannerPromptText" rows="8" class="w-full text-xs font-mono text-slate-700 bg-slate-50 p-3.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brandGreen-500/20 leading-relaxed resize-y"></textarea>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer class="mt-8 text-center py-6 border-t border-slate-200 text-slate-500 text-xs flex flex-col gap-1 bg-white/50 backdrop-blur-sm">
+        <p><span class="font-black text-slate-800 tracking-wide">PROMPT DESIGN CHANNEL</span> &copy; 2026.</p>
+    </footer>
+
+    <script>
+        let generatedChannelOptions = [];
+        let currentActiveChannel = null;
+
+        // DOM Inputs
+        const channelNameInput = document.getElementById('channelNameInput');
+        const topicInput = document.getElementById('topicInput');
+        const langSelect = document.getElementById('langSelect');
+        const clearNameBtn = document.getElementById('clearNameBtn');
+        const nameStatusHint = document.getElementById('nameStatusHint');
+
+        // Buttons
+        const directStudioBtn = document.getElementById('directStudioBtn');
+        const directBtnText = document.getElementById('directBtnText');
+        const directBtnIcon = document.getElementById('directBtnIcon');
+        
+        const generateNamesBtn = document.getElementById('generateNamesBtn');
+        const namesBtnText = document.getElementById('namesBtnText');
+        const namesBtnIcon = document.getElementById('namesBtnIcon');
+
+        // Sections
+        const nameIdeasSection = document.getElementById('nameIdeasSection');
+        const namesGrid = document.getElementById('namesGrid');
+        const activeTopicBadge = document.getElementById('activeTopicBadge');
+
+        const studioWorkspace = document.getElementById('studioWorkspace');
+        const activeChannelDisplay = document.getElementById('activeChannelDisplay');
+        const copyActiveNameBtn = document.getElementById('copyActiveNameBtn');
+
+        // Output fields
+        const detailDescription = document.getElementById('detailDescription');
+        const detailTags = document.getElementById('detailTags');
+        const charCount = document.getElementById('charCount');
+        const logoPromptText = document.getElementById('logoPromptText');
+        const bannerPromptText = document.getElementById('bannerPromptText');
+
+        // Copy Buttons
+        const copyDescBtn = document.getElementById('copyDescBtn');
+        const copyTagsBtn = document.getElementById('copyTagsBtn');
+        const copyLogoPromptBtn = document.getElementById('copyLogoPromptBtn');
+        const copyBannerPromptBtn = document.getElementById('copyBannerPromptBtn');
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ensure inputs are completely empty on initial launch
+            channelNameInput.value = '';
+            topicInput.value = '';
+
+            // Initial UI check for Name input state
+            evaluateNameInputState();
+
+            // Listen to channel name input changes
+            channelNameInput.addEventListener('input', () => {
+                evaluateNameInputState();
+                if (channelNameInput.value.trim().length > 0 && studioWorkspace.classList.contains('hidden') === false) {
+                    // Sync live changes if workspace is already open
+                    generateStudioOutputsDirectly();
+                }
+            });
+
+            // Clear name button click
+            clearNameBtn.addEventListener('click', () => {
+                channelNameInput.value = '';
+                evaluateNameInputState();
+                channelNameInput.focus();
+            });
+
+            // Action Buttons
+            directStudioBtn.addEventListener('click', generateStudioOutputsDirectly);
+            generateNamesBtn.addEventListener('click', trigger10NamesGeneration);
+
+            // Settings change reactivity
+            langSelect.addEventListener('change', () => {
+                if (!studioWorkspace.classList.contains('hidden')) generateStudioOutputsDirectly();
+            });
+
+            // Copy buttons
+            copyActiveNameBtn.addEventListener('click', () => {
+                if (channelNameInput.value.trim()) copyToClipboard(channelNameInput.value.trim(), "Nama Channel berhasil disalin!");
+            });
+            copyDescBtn.addEventListener('click', () => copyToClipboard(detailDescription.innerText, "Deskripsi SEO disalin!"));
+            copyTagsBtn.addEventListener('click', () => copyToClipboard(detailTags.innerText, "Kata kunci Tags disalin!"));
+            copyLogoPromptBtn.addEventListener('click', () => copyToClipboard(logoPromptText.value, "Prompt Logo 1:1 disalin!"));
+            copyBannerPromptBtn.addEventListener('click', () => copyToClipboard(bannerPromptText.value, "Prompt Banner 16:9 disalin!"));
+        });
+
+        /* Dynamic Concept Logic: If Name filled -> Hide Generate 10 Ideas button. If Name empty -> Show Generate 10 Ideas button */
+        function evaluateNameInputState() {
+            const hasName = channelNameInput.value.trim().length > 0;
+
+            if (hasName) {
+                // Name IS filled -> Show Direct Studio Button, HIDE 10 Ideas button
+                directStudioBtn.classList.remove('hidden');
+                generateNamesBtn.classList.add('hidden');
+                clearNameBtn.classList.remove('hidden');
+
+                nameStatusHint.innerText = "✓ Mode Langsung Aktif";
+                nameStatusHint.className = "text-[11px] font-bold text-brandGreen-600 font-mono";
+            } else {
+                // Name IS EMPTY -> HIDE Direct Studio Button, SHOW 10 Ideas button
+                directStudioBtn.classList.add('hidden');
+                generateNamesBtn.classList.remove('hidden');
+                clearNameBtn.classList.add('hidden');
+
+                nameStatusHint.innerText = "Kosong = Cari 10 Ide Nama";
+                nameStatusHint.className = "text-[11px] font-semibold text-amber-600 font-mono";
+            }
+        }
+
+        function generateStudioOutputsDirectly() {
+            const channelName = channelNameInput.value.trim();
+            const rawTopic = topicInput.value.trim();
+
+            if (!channelName) {
+                showToast("Harap isi Nama Channel terlebih dahulu!", "error");
+                channelNameInput.focus();
+                return;
+            }
+
+            const lang = langSelect.value;
+            const topic = resolveTopic(channelName, rawTopic);
+
+            currentActiveChannel = {
+                name: channelName,
+                tagline: getFallbackTagline(topic, lang),
+                cta: getFallbackCTA(topic, lang)
+            };
+
+            activeChannelDisplay.innerText = channelName;
+
+            // Generate SEO & Prompts
+            const seo = generateSEODescriptionAndTags(channelName, rawTopic, lang);
+            detailDescription.innerText = seo.description;
+            detailTags.innerText = seo.tags;
+            charCount.innerText = `${seo.description.length} Karakter`;
+
+            logoPromptText.value = buildUltraHDLogoPrompt(channelName, topic, currentActiveChannel);
+            bannerPromptText.value = buildUltraHDBannerPrompt(channelName, topic, currentActiveChannel.tagline, currentActiveChannel.cta);
+
+            // Show Studio Workspace
+            studioWorkspace.classList.remove('hidden');
+            setTimeout(() => {
+                studioWorkspace.classList.remove('opacity-0', 'translate-y-4');
+                studioWorkspace.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 50);
+
+            showToast(`Prompt & SEO untuk '${channelName}' siap!`, "success");
+        }
+
+        function trigger10NamesGeneration() {
+            const topic = topicInput.value.trim();
+            if (!topic) {
+                showToast("Harap isi Topik/Sub-Niche terlebih dahulu!", "error");
+                topicInput.focus();
+                return;
+            }
+
+            const lang = langSelect.value;
+
+            // Hide Studio workspace if it was open
+            studioWorkspace.classList.add('opacity-0', 'translate-y-4');
+            setTimeout(() => studioWorkspace.classList.add('hidden'), 200);
+
+            namesBtnText.innerText = "MEMPROSES IDE BRANDING...";
+            namesBtnIcon.className = "fa-solid fa-spinner animate-spin-slow text-amber-400";
+            generateNamesBtn.disabled = true;
+
+            // Generate 10 concept names
+            generatedChannelOptions = generate10BrandingOptions(topic, lang);
+
+            setTimeout(() => {
+                activeTopicBadge.innerText = `${topic} (${lang})`;
+                render10NameCards();
+
+                nameIdeasSection.classList.remove('hidden');
+                setTimeout(() => {
+                    nameIdeasSection.classList.remove('opacity-0', 'translate-y-4');
+                    nameIdeasSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 50);
+
+                namesBtnText.innerText = "GENERATE 10 IDE NAMA CHANNEL";
+                namesBtnIcon.className = "fa-solid fa-lightbulb text-amber-400";
+                generateNamesBtn.disabled = false;
+
+                showToast("10 Ide Nama Channel berhasil dibuat!", "success");
+            }, 400);
+        }
+
+        function render10NameCards() {
+            namesGrid.innerHTML = '';
+            generatedChannelOptions.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-2xl p-4.5 border-2 border-slate-100 hover:border-brandGreen-400 hover:shadow-lg transition-all duration-300 flex flex-col justify-between gap-3 group transform hover:-translate-y-1";
+
+                card.innerHTML = `
+                    <div class="flex items-start justify-between gap-3">
+                        <div class="flex items-center gap-3">
+                            <span class="w-7 h-7 rounded-full bg-brandGreen-100 group-hover:bg-brandGreen-600 text-brandGreen-800 group-hover:text-white font-black text-xs flex items-center justify-center transition-colors border border-brandGreen-200">
+                                ${index + 1}
+                            </span>
+                            <h4 class="font-black text-base text-slate-900 group-hover:text-brandGreen-700 transition-colors leading-tight font-outfit">${item.name}</h4>
+                        </div>
+                        <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(item.name)}" 
+                           target="_blank" 
+                           title="Cek ketersediaan di YouTube"
+                           class="text-slate-400 hover:text-red-600 hover:bg-red-50 flex items-center justify-center w-7 h-7 rounded-lg border border-slate-200 transition-colors">
+                            <i class="fa-solid fa-play text-[9px]"></i>
+                        </a>
+                    </div>
+
+                    <p class="text-[11px] text-brandGreen-800 font-mono bg-brandGreen-50 px-3 py-1.5 rounded-xl border border-brandGreen-100 font-semibold tracking-wide">
+                        ${item.tagline}
+                    </p>
+
+                    <button onclick="selectGeneratedName('${item.name.replace(/'/g, "\\'")}')" 
+                            class="w-full mt-1 bg-slate-50 group-hover:bg-brandGreen-600 text-slate-700 group-hover:text-white font-bold text-xs py-2.5 rounded-xl flex items-center justify-center gap-2 transition-all cursor-pointer border border-slate-200 group-hover:border-transparent">
+                        <span>PAKAI NAMA INI</span>
+                        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                `;
+                namesGrid.appendChild(card);
+            });
+        }
+
+        function selectGeneratedName(selectedName) {
+            // Fill into channel name input
+            channelNameInput.value = selectedName;
+            
+            // Re-evaluate input state
+            evaluateNameInputState();
+
+            // Directly generate studio outputs
+            generateStudioOutputsDirectly();
+        }
+
+        // Smart Topic Resolver (eliminates robotic fallbacks)
+        function resolveTopic(channelName, userTopic) {
+            let topic = (userTopic || '').trim();
+            if (topic) return topic;
+
+            const lowerName = channelName.toLowerCase();
+            if (lowerName.includes('kucing') || lowerName.includes('cat') || lowerName.includes('meow')) return 'Dunia Kucing & Hewan Peliharaan';
+            if (lowerName.includes('game') || lowerName.includes('gaming') || lowerName.includes('play')) return 'Gaming & Gameplay Gameplay Video';
+            if (lowerName.includes('tech') || lowerName.includes('gadget')) return 'Teknologi & Gadget Terbaru';
+            if (lowerName.includes('car') || lowerName.includes('auto') || lowerName.includes('motor')) return 'Dunia Otomotif & Modifikasi';
+            if (lowerName.includes('food') || lowerName.includes('kuliner') || lowerName.includes('cook')) return 'Kuliner & Wisata Rasa';
+            if (lowerName.includes('travel') || lowerName.includes('jelajah')) return 'Petualangan & Wisata Travel';
+            if (lowerName.includes('music') || lowerName.includes('lagu') || lowerName.includes('sound')) return 'Musik & Hiburan Audio';
+
+            return `Dunia ${channelName}`;
+        }
+
+        // Strict & Relevant Hashtag Generator (Only Channel Name & Topic Related)
+        function generateHashtags(channelName, topic) {
+            const cleanName = channelName.replace(/[^\w\s]/gi, '').trim();
+            const nameWords = cleanName.split(/\s+/).filter(Boolean);
+            const namePascal = nameWords.map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join('');
+            
+            const cleanTopic = topic.replace(/[^\w\s]/gi, '').trim();
+            const topicWords = cleanTopic.split(/\s+/).filter(w => w.length > 2);
+            
+            const tagsSet = new Set();
+            
+            // 1. Channel Name Tag Variants
+            if (namePascal) {
+                tagsSet.add(`#${namePascal}`);
+                tagsSet.add(`#${namePascal}Official`);
+                tagsSet.add(`#${namePascal}Channel`);
+            }
+
+            // 2. Specific Words from Channel Name
+            nameWords.forEach(w => {
+                if (w.length > 2) {
+                    tagsSet.add(`#${w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()}`);
+                }
+            });
+
+            // 3. Specific Topic Tags
+            topicWords.forEach(w => {
+                const capitalized = w.charAt(0).toUpperCase() + w.slice(1).toLowerCase();
+                tagsSet.add(`#${capitalized}`);
+            });
+
+            // 4. Joined Topic Tag
+            const topicPascal = topicWords.map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join('');
+            if (topicPascal && topicPascal !== namePascal) {
+                tagsSet.add(`#${topicPascal}`);
+            }
+
+            return Array.from(tagsSet).join(' ');
+        }
+
+        function generateSEODescriptionAndTags(channelName, rawTopic, lang) {
+            const topic = resolveTopic(channelName, rawTopic);
+            let desc = "";
+
+            if (lang === 'English') {
+                desc = `Welcome to the official ${channelName} channel! 🚀\n\nOur mission is to bring you top-tier, engaging, and insightful content focused on ${topic}.\n\nWhether you're looking for detailed breakdowns, entertaining highlights, or in-depth guides about ${topic}, ${channelName} is your primary destination.\n\n📌 What You Can Expect:\n• Premium quality videos on ${topic}\n• Regular updates & deep-dive coverage\n• An active and passionate community\n\nHit the SUBSCRIBE button and turn on the notification bell 🔔 so you never miss an upload!\n\nThank you for watching and supporting our journey!`;
+            } else if (lang === 'Japanese') {
+                desc = `${channelName} の公式チャンネルへようこそ！ ✨\n\n当チャンネルでは、${topic} に関する高品質で魅力的なコンテンツをお届けしています。\n\n${topic} の最新情報や深掘り解説、楽しんでいただける動画を定期的に投稿中！\n\n📌 チャンネルの特徴:\n• ${topic} に特化したプレミアム動画\n• 定期的な更新とわかりやすい解説\n\n🔔 ぜひ【チャンネル登録】と【ベルマークの通知ON】をお願いします！\n\n皆様の応援、いつもありがとうございます！`;
+            } else if (lang === 'Arabic') {
+                desc = `أهلاً بكم في القناة الرسمية لـ ${channelName}! 🚀\n\nنهدف إلى تقديم أفضل المحتويات المميزة والقيمة حول ${topic}.\n\nسواء كنت تبحث عن تحليلات عميقة، أو مقاطع ممتعة ومفيدة عن ${topic}، فإن ${channelName} هي وجهتك الأولى.\n\n🔔 لا تنسَ الاشتراك في القناة وتفعيل زر الجرس ليصلك كل جديد!\n\nشكراً لدعمكم المستمر!`;
+            } else if (lang === 'Spanish') {
+                desc = `¡Bienvenido al canal oficial de ${channelName}! 🚀\n\nNuestro objetivo es ofrecerte el mejor contenido, entretenido y de alta calidad sobre ${topic}.\n\nSi buscas análisis profundos, consejos o los mejores videos sobre ${topic}, ${channelName} es tu lugar ideal.\n\n🔔 ¡No olvides SUSCRIBIRTE y activar la campanita de notificaciones para no perderte ningún video!\n\n¡Gracias por tu apoyo!`;
+            } else {
+                // Indonesian
+                desc = `Selamat datang di channel resmi ${channelName}! 🌟\n\nChannel ini hadir secara khusus untuk menyajikan berbagai konten mendalam, menarik, dan informatif seputar ${topic}.\n\nDi ${channelName}, fokus utama kami adalah menghadirkan video berkualitas tinggi yang menghibur sekaligus memberikan wawasan bermanfaat bagi Anda.\n\n📌 Mengapa Harus Subscribe?\n• Pembahasan komprehensif & update seputar ${topic}\n• Visual & penyajian video berstandar tinggi\n• Komunitas diskusi yang interaktif & positif\n\nJangan lupa untuk menekan tombol SUBSCRIBE dan aktifkan Lonceng Notifikasi 🔔 agar tidak ketinggalan video-video terbaru dari kami.\n\nTerima kasih atas dukungan hangat Anda!`;
+            }
+
+            const tags = generateHashtags(channelName, topic);
+
+            return { description: desc, tags: tags };
+        }
+
+        function buildUltraHDLogoPrompt(channelTitle, nicheTopic) {
+            return `Professional YouTube profile logo emblem avatar (1:1 aspect ratio).
+
+Concept:
+Designed specifically for YouTube channel '${channelTitle}' specializing in ${nicheTopic}.
+
+Central Focal Point:
+Detailed 3D emblem avatar depicting key themes of ${nicheTopic}, vibrant lighting, polished textures, soft drop shadows.
+
+Color & Atmosphere:
+Cinematic studio lighting, balanced color contrast, rich accent colors, sleek gradient background.
+
+Branding:
+Clean typography reading '${channelTitle}' neatly embedded in safe center contour.
+
+High realism, 8k resolution, octane render quality optimized for YouTube profile picture display.`;
+        }
+
+        function buildUltraHDBannerPrompt(channelTitle, nicheTopic, tagline, cta) {
+            return `Professional YouTube channel banner (2560x1440 canvas).
+
+CRITICAL LAYOUT RULE:
+All text and core logos MUST be strictly placed inside the central YouTube safe area (1546x423 px).
+
+Typography (Center Safe Area Only):
+- Main Title: ${channelTitle} (Large bold elegant text)
+- Subtitle: ${tagline.toUpperCase()} (Clean small sub-heading)
+- Call To Action: ✦ ${cta} ✦ (Small bottom accent text)
+
+Visual Backdrop (Left & Right Sides):
+Left Side: Atmospheric 3D elements, glowing aura, and light particles themed around ${nicheTopic}.
+Right Side: Ultra-detailed cinematic backdrop scene representing ${nicheTopic}.
+
+Color & Lighting:
+High contrast studio lighting, vibrant colors, premium depth of field, 8k resolution, optimized for all desktop & mobile displays.`;
+        }
+
+        function generate10BrandingOptions(topic, lang) {
+            const cleanTopic = topic || "Kucing Lucu";
+            const shortTopic = cleanTopic.split(' ').slice(0, 2).join(' ');
+
+            const prefixes = lang === 'English' 
+                ? ["Epic", "Pulse", "Realm", "Aura", "Prime", "Studio", "Vibe", "Hub", "Central", "Zone"] 
+                : ["Dunia", "Zona", "Kilas", "Ruang", "Nalar", "Ragam", "Jejak", "Arah", "Pusat", "Studio"];
+            
+            const suffixes = lang === 'English' 
+                ? ["World", "Official", "Media", "Verse", "Nation", "Lab", "Hub", "Zone", "Channel", "TV"] 
+                : ["Channel", "Official", "Media", "Pedia", "Vibes", "World", "Lab", "Zone", "Nation", "Hub"];
+
+            const tagline = getFallbackTagline(topic, lang);
+
+            return Array(10).fill(0).map((_, i) => ({
+                name: `${prefixes[i]} ${shortTopic} ${suffixes[i]}`,
+                tagline: tagline
+            }));
+        }
+
+        function getFallbackTagline(topic, lang) {
+            if (lang === 'English') return 'INSPIRE • CREATE • ENJOY';
+            if (lang === 'Japanese') return '可愛い • 癒し • 楽しい';
+            return 'INSPIRATIF • SERU • BERKUALITAS';
+        }
+
+        function getFallbackCTA(topic, lang) {
+            if (lang === 'English') return 'Subscribe Now & Stay Tuned';
+            if (lang === 'Japanese') return 'チャンネル登録して最新動画をチェック';
+            return 'Subscribe Sekarang & Tonton Video Terbaru';
+        }
+
+        function copyToClipboard(text, message) {
+            if (!text) return;
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showToast(message || "Berhasil disalin!", "success");
+            } catch (err) {
+                showToast("Gagal menyalin teks", "error");
+            } finally {
+                document.body.removeChild(textarea);
+            }
+        }
+
+        function showToast(message, type = 'info') {
+            const toastContainer = document.getElementById('toast-container');
+            if (!toastContainer) return;
+
+            const toast = document.createElement('div');
+            let bgClass = type === 'success' ? 'bg-slate-900 text-white border-slate-800' : 'bg-red-50 text-red-800 border-red-200';
+            let iconClass = type === 'success' ? 'fa-circle-check text-brandGreen-400' : 'fa-circle-exclamation text-red-500';
+
+            toast.className = `pointer-events-auto flex items-center gap-2.5 px-4 py-3 rounded-2xl border shadow-xl transition-all duration-300 transform translate-x-10 opacity-0 text-xs font-bold ${bgClass}`;
+            toast.innerHTML = `<i class="fa-solid ${iconClass} text-sm"></i><span>${message}</span>`;
+
+            toastContainer.appendChild(toast);
+
+            requestAnimationFrame(() => toast.classList.remove('translate-x-10', 'opacity-0'));
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-x-10');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+    </script>
+
+    <!-- Kode anti ctrl + u -->
+    <script type='text/javascript'>
+    //<![CDATA[
+    function redirectCU(e) {if (e.ctrlKey && e.which == 85) {window.location.replace("/"); return false;}} document.onkeydown = redirectCU;
+    //]]>
+    </script>
+</body>
+</html>
